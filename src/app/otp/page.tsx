@@ -84,7 +84,7 @@ export default function OtpPage() {
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-background px-4">
-      <form onSubmit={handleVerify} className="w-full max-w-sm bg-surface border border-border rounded-lg p-8">
+      <div className="w-full max-w-sm bg-surface border border-border rounded-lg p-8">
         <h1 className="text-2xl font-medium text-ink mb-1">Verify it&apos;s you</h1>
         <p className="text-sm text-muted mb-7">Enter the 6 digit code we sent</p>
 
@@ -109,7 +109,7 @@ export default function OtpPage() {
         {error && <p className="text-sm text-danger mb-4">{error}</p>}
 
         <button
-          type="submit"
+          onClick={handleVerify}
           disabled={isVerifying || digits.some((d) => !d)}
           className="w-full bg-accent text-white font-medium py-2 rounded-md disabled:opacity-60 mb-3"
         >
@@ -117,14 +117,13 @@ export default function OtpPage() {
         </button>
 
         <button
-        type='button'
           onClick={handleResend}
           disabled={secondsLeft > 0}
           className="w-full text-sm text-muted disabled:opacity-60"
         >
           {secondsLeft > 0 ? `Resend code in ${secondsLeft}s` : 'Resend code'}
         </button>
-      </form>
+      </div>
     </main>
   )
 }
